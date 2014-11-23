@@ -11,23 +11,31 @@ This plugin only implements object-fit: cover property for img tags wrapped in t
 
 Sample usage:
 
-Style sheet:
+HTML Snippet:
+<pre>
+&lt;figure class="inage-cover"&gt;
+	&lt;img src="/path-to-images-folder/image.jpg" width="800" height="600" /&gt;
+&lt;/figure&gt;
+</pre>
 
-figure.image-fit {
+Style sheet:
+<pre>
+figure.image-cover {
   position: relative;
   width: 50%;
   height: 20vh; /* viewport hieght, not supported in IE8*/
   overflow: hidden; /* important */
 }
 
-figure.image-fit img {
+figure.image-cover img {
   position: relative; /*must have a non-static position to work in browsers that do not support object-fit*/
   width: 100%; /* initial value overriden by object-fit and/or plugin */
   height: 100%; /* initial value overriden by object-fit and/or plugin */
   object-fit: cover; /* works in latest Webkit browsers + FF 36+ */
 }
-
+</pre>
 Javascript in jQuery context:
 
+<pre>
 $('figure.image-fit').imageFitCover();
-
+</pre>
