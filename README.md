@@ -19,7 +19,7 @@ Our approach may be less flexible, but is more efficient for situations where yo
 
 <h4>HTML Snippet:</h4>
 <pre>
-&lt;figure class="inage-cover"&gt;
+&lt;figure class="image-cover"&gt;
 	&lt;img src="/path-to-images-folder/image.jpg" width="800" height="600" /&gt;
 &lt;/figure&gt;
 </pre>
