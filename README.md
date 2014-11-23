@@ -1,7 +1,9 @@
 imageFitCover
 =============
 
-This simple jQuery plugin lets you add *object-fit: cover* property in all modern browsers when used with images.
+This simple jQuery plugin lets you sizes image within their container in the same way as the new CSS <em>object-fit: cover</em> property in all modern browsers that do not yet support it natively.
+
+<p>A  <a href="http://multifaceted.info/demos/image-fit-cover/demo/index.html">simple demo</a> shows you the desired effect</p>
 
 All images within the targeted container object will fill its entire area without changing their aspect ratio. The replaced content is sized to maintain its aspect ratio while filling the element’s entire content box: its concrete object size is resolved as a cover constraint against the element’s used width and height.
 
