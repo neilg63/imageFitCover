@@ -8,12 +8,18 @@
 		var container = this, imgs, numContainers=0, objectFitSupported=false;
 		
 		var setNaturalSize = function(img) {
+			// Use width and height attributes if available, these should match desired aspect ratio
 			if (!img.attr('width') && !img.attr('height')) {
 				var image = new Image();
 				image.src = img.attr("src");
 				$(image).on('load',function(){
 					var im = $(this)[0];
-					img.attr({width:im.naturalWidth,height:im.naturalHeight});
+					if (im.naturalWidth) {
+						img.attr({width:im.naturalWidth,height:im.naturalHeight});
+					} else {
+						// Old IE < 9
+						img.attr({width:im.width,height:im.height});
+					}
 				});
 			}
 		}
@@ -46,7 +52,6 @@
 						attrs.height = '100%';
 						attrs.left = 0-Math.abs((fw-(fh*par))/2) + 'px';
 					}
-					img.parent().find('imgcaption').html( container.eq(index).attr('class') + '--' + fh + ' ; ' + (fw/par) + ' , ' + ((fh-(fw/par))/2) + ' -> ' + attrs.top);
 					img.css(attrs);
 				}
 			}
@@ -66,14 +71,15 @@
 			if (numContainers>0) {
 				imgs = container.find('img');
 				if (imgs.length>0) {
+					// Check support for object-fit property
 					var check = document.createElement('div');
 					objectFitSupported = !!(0 + check.style['object-fit']);
 					if (!objectFitSupported) {
 						container.removeAttr('style').css({overflow:'hidden'});
+						// images must have a non-static position
 						if ( imgs.eq(0).css('position')  == 'static') {
 							imgs.css('position','relative');
 						}
-						//imgs.css({width:'auto',height:'auto'});
 						setNaturalSizes(imgs);
 						imgs.on('load',function(){
 							setTimeout(resetSize,10);
