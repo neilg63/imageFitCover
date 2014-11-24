@@ -1,7 +1,5 @@
+/* imageFitCover v0.1 | Author: Neil Gardner, 2014 | License: GPL */
 (function($) {
-	/*
-	* @author: Neil Gardner neilgardner1963@gmail.com 14/11/2014
-	 */
 
 	$.fn.imageFitCover = function(){
 		
