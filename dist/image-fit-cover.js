@@ -1,23 +1,24 @@
-/* imageFitCover v0.1 | Author: Neil Gardner, 2014 | License: GPL */
+/* imageFitCover v0.2 | Author: Neil Gardner, 2014 | License: GPL */
 (function($) {
 
-	$.fn.imageFitCover = function(){
+	$.fn.imageFitCover = function(delay){
 		
-		var container = this, imgs, numContainers=0, objectFitSupported=false;
+		var container = this, imgs, numContainers=0, objectFitSupported=false, resized = false, addRelative = false;
 		
 		var setNaturalSize = function(img) {
 			// Use width and height attributes if available, these should match desired aspect ratio
 			if (!img.attr('width') && !img.attr('height')) {
-				var image = new Image();
+				var image = new Image(),attrs={};
 				image.src = img.attr("src");
 				$(image).on('load',function(){
 					var im = $(this)[0];
 					if (im.naturalWidth) {
-						img.attr({width:im.naturalWidth,height:im.naturalHeight});
+						attrs = {width:im.naturalWidth,height:im.naturalHeight};
 					} else {
 						// Old IE < 9
-						img.attr({width:im.width,height:im.height});
+						attrs = {width:im.width,height:im.height};
 					}
+					img.attr(attrs);
 				});
 			}
 		}
@@ -36,9 +37,6 @@
 				fw = container.eq(index).width();
 				fh = container.eq(index).height();
 				tar = fw / fh;
-				//img.attr({width:'auto',height:'auto'});
-				//img.on('load',function(){
-				
 				h = img.attr('height') -0;
 				w = img.attr('width') -0;
 				if (h > 0 && w > 0) {
@@ -50,7 +48,14 @@
 						attrs.height = '100%';
 						attrs.left = 0-Math.abs((fw-(fh*par))/2) + 'px';
 					}
+					if (addRelative) {
+						attrs.position = 'relative';
+					}
 					img.css(attrs);
+					if (i==0 && !resized) {
+						container.addClass('image-fit-cover');
+						resized = true;
+					}
 				}
 			}
 		}
@@ -65,7 +70,6 @@
 		
 		var init = function() {
 			numContainers = container.length;
-			
 			if (numContainers>0) {
 				imgs = container.find('img');
 				if (imgs.length>0) {
@@ -73,16 +77,16 @@
 					var check = document.createElement('div');
 					objectFitSupported = !!(0 + check.style['object-fit']);
 					if (!objectFitSupported) {
-						container.removeAttr('style').css({overflow:'hidden'});
+						if (!delay) {
+							delay = 10;
+						}
 						// images must have a non-static position
 						if ( imgs.eq(0).css('position')  == 'static') {
-							imgs.css('position','relative');
+							addRelative = true;
 						}
 						setNaturalSizes(imgs);
-						imgs.on('load',function(){
-							setTimeout(resetSize,10);
-							$(window).on('resize', resetSize);
-						});
+						setTimeout(resetSize,delay);
+						$(window).on('resize', resetSize);
 					}
 				}
 			}
