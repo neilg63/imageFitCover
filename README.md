@@ -7,7 +7,7 @@ This simple jQuery plugin lets you scale images to fit within their container el
 
 All images within the targeted container object will fill its entire area without changing their aspect ratio. The replaced content is sized to maintain its aspect ratio while filling the element’s entire content box: its concrete object size is resolved as a cover constraint against the element’s used width and height.
 
-As of November 2014 the latest Webkit browsers and Firefox 36 support object-fit. However, Internet Explorer, Firefox before version 36 and older versions of Safari prior to version 7.1 d not.
+As of November 2014 the latest Webkit browsers and Firefox 36 support object-fit. However, Internet Explorer, Firefox before version 36 and older versions of Safari prior to version 7.1 do not.
 
 This plugin only implements object-fit: <em>cover</em> property for img tags wrapped in the targeted containers. 
 
@@ -44,4 +44,13 @@ figure.image-cover img {
 <h4>Javascript in jQuery context:</h4>
 <pre>
 $('figure.image-fit').imageFitCover();
+</pre>
+
+<h4>Image Loading</h4>
+<p>The script does not wait for images to load fully via an onload event handler, as it can work <em>height</em> and <em>width</em> attributes alone if added to your &lt;mg /&gt; tags. In the absence of <em>height</em> and <em>width</em> , the plugin will use <em>naturalWidth</em> or <em>naturalHeight</em> with recent browses and <em>width</em> and <me>height</em> alone with legacy IE. For best performance, I would recommend adding <em>height</em> and <em>width</em>  that match the images correct natural pixel size. The plugin does not override image sizes in percent but merely sets one axis to <em>100%</em> and the other to <em>auto</em>. Only <em>top</em> or <em>left</em> are in set in pixels.</p>
+
+<h4>Delay and Picture Module</h4>
+<p>When interacting with other Javascript libraries such as Picturefill.js it may necessary to an extra delay. Just an integer is milliseconds as the first parameter to wait for the other script to complete.</p>
+<pre>
+$('picture').imageFitCover(200); /* will apply offsets after 0.2 seconds */
 </pre>
