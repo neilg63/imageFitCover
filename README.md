@@ -54,7 +54,7 @@ $('figure.image-fit').imageFitCover();
 <p>The script does not wait for images to load fully via an onload event handler, as it can work <em>height</em> and <em>width</em> attributes alone if added to your &lt;mg /&gt; tags. In the absence of <em>height</em> and <em>width</em> , the plugin will use <em>naturalWidth</em> or <em>naturalHeight</em> with recent browses and <em>width</em> and <me>height</em> alone with legacy IE. For best performance, I would recommend adding <em>height</em> and <em>width</em>  that match the images correct natural pixel size. The plugin does not override image sizes in percent but merely sets one axis to <em>100%</em> and the other to <em>auto</em>. Only <em>top</em> or <em>left</em> are in set in pixels.</p>
 
 <h4>Delay and Picture Module</h4>
-<p>When interacting with other Javascript libraries such as Picturefill.js it may necessary to an extra delay. Just an integer is milliseconds as the first parameter to wait for the other script to complete.</p>
+<p>When integrated with other Javascript libraries such as <em>picturefills.js</em> it may be necessary to add an extra delay. Just specify milliseconds as the first parameter to wait for the other script to complete. Alternatively, if the other script provides a callback function, call imageFitCover() on completion.</p>
 <pre>
 $('picture').imageFitCover(200); /* will apply offsets after 0.2 seconds */
 </pre>
