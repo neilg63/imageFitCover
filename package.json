@@ -1,0 +1,25 @@
+{
+  "name": "imageFitCover",
+  "version": "0.2",
+  "description": "Simple jQuery plugin to support object-fit:cover for image tags in non-Webkit browsers",
+  "author": "https://github.com/neilg63",
+  "license": "MIT/GPL",
+  "homepage": "https://github.com/neilg63/imageFitCover",
+  "main": "./dist/sortable.js",
+  "dependencies": {
+  	"jquery": ">=1.7"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neilg63/imageFitCover.git"
+  },
+	"maintainers": [
+			{
+				"name": "Neil Gardner",
+				"email": "neilgardner1963@gmail.com",
+				"url": "http://multifaceted.info"
+			}
+		]
+}

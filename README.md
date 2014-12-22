@@ -1,7 +1,7 @@
 imageFitCover
 =============
 
-This simple jQuery plugin lets you scale images to fit within their container element, as specified for the new CSS <em><a href="http://dev.w3.org/csswg/css-images-3/#the-object-fit" rel="external">object-fit: cover</a></em> property. It should work in all modern browsers that do not yet support <em>object-fit</em> natively and is compatible with jQuery 1.7+ and 2.*.
+This simple jQuery plugin lets you scale images to fit within their container element, as specified for the new CSS <em><a href="http://dev.w3.org/csswg/css-images-3/#the-object-fit" rel="external">object-fit: cover</a></em> property. It should work in all modern browsers that do not yet support <em>object-fit</em> natively and is compatible with jQuery 1.7+ and 2.*. This has the same effect as using <em>background-size: cover<em> with background images, but lets you use <em>img</em> tags and the new picture module instead.
 
 <p>A  <a href="http://multifaceted.info/demos/image-fit-cover/demo/index.html">simple demo</a> shows you the desired effect</p>
 
@@ -14,6 +14,10 @@ This plugin only implements object-fit: <em>cover</em> property for img tags wra
 Other plugins, most notably Simon Schmid's <a href="https://github.com/schmidsi/jquery-object-fit">jquery.object-fit</a> and Anselm Hannemann's <a href="https://github.com/anselmh/object-fit">vanilla javascript polyfill</a>, provide more complete support for <en>object-fit</em> and implement other values such as fill, contain and scaled-down and work directly on any HTML object that should respond to object-fit rather than only on elements containing image tags.
 	
 Our approach may be less flexible, but is more efficient for situations where you need to fit images within an area within a different aspect ratio. As a jQuery plugin it can be combined with numerous other plugins for slide shows and other effects. Inline styles are added only to browsers that do not support object-fit via a simple test on initial page load.
+
+<h4>v0.2 Release Note</h4>
+
+The plugin will now only check for support once and adds two body classes <em>object-fit-checked</em> and, if support is detected, <em>object-fit-supported</em>. This works much better with multiple images or when loading content asynchronously.
 
 <h3>Sample usage:<h3>
 
