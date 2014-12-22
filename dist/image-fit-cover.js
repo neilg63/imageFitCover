@@ -1,4 +1,4 @@
-/* imageFitCover v0.2 | Author: Neil Gardner, 2014 | License: GPL */
+/* imageFitCover v0.2 | Author: Neil Gardner, 2014 | License: GPL/MIT */
 (function($) {
 
 	$.fn.imageFitCover = function(delay){
@@ -74,19 +74,27 @@
 				imgs = container.find('img');
 				if (imgs.length>0) {
 					// Check support for object-fit property
-					var check = document.createElement('div');
-					objectFitSupported = !!(0 + check.style['object-fit']);
-					if (!objectFitSupported) {
-						if (!delay) {
-							delay = 10;
+					var b = $('body');
+					if (b.hasClass('object-fit-checked') == false) {
+						var check = document.createElement('div');
+						objectFitSupported = !!(0 + check.style['object-fit']);
+						b.addClass('object-fit-checked');
+						if (!objectFitSupported) {
+							if (!delay) {
+								delay = 10;
+							}
+							// images must have a non-static position
+							if ( imgs.eq(0).css('position')  == 'static') {
+								addRelative = true;
+							}
+							setNaturalSizes(imgs);
+							setTimeout(resetSize,delay);
+							$(window).on('resize', resetSize);
+						} else {
+							b.addClass('object-fit-supported');
 						}
-						// images must have a non-static position
-						if ( imgs.eq(0).css('position')  == 'static') {
-							addRelative = true;
-						}
-						setNaturalSizes(imgs);
-						setTimeout(resetSize,delay);
-						$(window).on('resize', resetSize);
+					} else {
+						objectFitSupported = b.hasClass('object-fit-supported');
 					}
 				}
 			}
