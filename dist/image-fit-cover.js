@@ -79,22 +79,22 @@
 						var check = document.createElement('div');
 						objectFitSupported = !!(0 + check.style['object-fit']);
 						b.addClass('object-fit-checked');
-						if (!objectFitSupported) {
-							if (!delay) {
-								delay = 10;
-							}
-							// images must have a non-static position
-							if ( imgs.eq(0).css('position')  == 'static') {
-								addRelative = true;
-							}
-							setNaturalSizes(imgs);
-							setTimeout(resetSize,delay);
-							$(window).on('resize', resetSize);
-						} else {
-							b.addClass('object-fit-supported');
-						}
 					} else {
 						objectFitSupported = b.hasClass('object-fit-supported');
+					}
+					if (!objectFitSupported) {
+						if (!delay) {
+							delay = 10;
+						}
+						// images must have a non-static position
+						if ( imgs.eq(0).css('position')  == 'static') {
+							addRelative = true;
+						}
+						setNaturalSizes(imgs);
+						setTimeout(resetSize,delay);
+						$(window).on('resize', resetSize);
+					} else {
+						b.addClass('object-fit-supported');
 					}
 				}
 			}
